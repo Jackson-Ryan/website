@@ -1,0 +1,7 @@
+{
+  "name": "my-website",
+  "assets": {
+    "directory": "./",
+    "html_handling": "404-page"
+  }
+}
