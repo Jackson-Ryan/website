@@ -1,75 +1,2262 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="theme-color" content="#080b0d">
-  <meta name="description" content="Ryan Jackson is a student who enjoys coding, learning new technology, and building digital projects.">
-  <title>RYAN_OS // Student &amp; Developer</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-    :root { --void:#080b0d; --panel:#0d1214; --line:#263438; --muted:#789095; --text:#d8e5df; --acid:#00ff66; --acid-dim:#008f48; --amber:#ffc857; --red:#ff5f56; --mono:'DM Mono','Courier New',monospace; --sans:'Space Grotesk','Trebuchet MS',sans-serif; }
-    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
-    body { margin:0; color:var(--text); background:var(--void); font-family:var(--sans); line-height:1.6; overflow-x:hidden; }
-    ::selection { color:var(--void); background:var(--acid); text-shadow:none; }
-    body::before { position:fixed; inset:0; z-index:20; pointer-events:none; content:''; opacity:.08; background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,#d8e5df 4px,transparent 5px); mix-blend-mode:screen; }
-    a { color:inherit; text-decoration:none; } .wrap { width:min(1160px,calc(100% - 40px)); margin:0 auto; }
-    .topbar { position:sticky; top:0; z-index:10; border-bottom:1px solid rgba(0,255,102,.2); background:rgba(8,11,13,.9); backdrop-filter:blur(10px); }
-    .nav { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:30px; } .brand { display:flex; align-items:center; gap:11px; font:500 15px var(--mono); letter-spacing:.08em; white-space:nowrap; }
-    .brand-mark { color:var(--acid); font-size:19px; text-shadow:0 0 15px var(--acid); } .nav-links { display:flex; gap:28px; color:var(--muted); font:400 12px var(--mono); }
-    .nav-links a:hover { color:var(--acid); text-shadow:0 0 10px var(--acid); } .nav-status { color:var(--acid); font:400 11px var(--mono); }
-    .nav-status::before { display:inline-block; width:6px; height:6px; margin:0 7px 1px 0; border-radius:50%; background:var(--acid); box-shadow:0 0 8px var(--acid); content:''; }
-    .hero { position:relative; min-height:680px; display:flex; align-items:center; padding:92px 0 112px; overflow:hidden; }
-    .hero::after { position:absolute; right:-18%; bottom:-20%; width:58vw; height:58vw; max-width:720px; max-height:720px; border:1px solid rgba(0,255,102,.12); border-radius:50%; box-shadow:0 0 0 40px rgba(0,255,102,.025),0 0 0 80px rgba(0,255,102,.018); content:''; pointer-events:none; }
-    .hero-grid { display:grid; grid-template-columns:1.25fr .75fr; align-items:center; gap:70px; } .eyebrow { color:var(--acid); font:400 12px var(--mono); letter-spacing:.15em; text-transform:uppercase; }
-    h1 { max-width:720px; margin:18px 0 20px; color:#ecf8f1; font:600 clamp(54px,9vw,112px)/.95 var(--mono); letter-spacing:-.08em; overflow-wrap:anywhere; text-shadow:0 0 25px rgba(0,255,102,.12); } h1 span { color:var(--acid); }
-    .hero-copy { max-width:590px; margin:0; color:#a6bcb5; font-size:18px; } .hero-copy strong { color:var(--text); font-weight:500; } .hero-actions { display:flex; gap:14px; margin-top:34px; }
-    .button { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:44px; padding:0 17px; border:1px solid var(--acid); color:var(--acid); background:rgba(0,255,102,.04); font:500 12px var(--mono); text-align:center; transition:background .2s ease,box-shadow .2s ease,transform .2s ease; }
-    .button:hover { color:var(--void); background:var(--acid); box-shadow:0 0 24px rgba(0,255,102,.3); transform:translateY(-2px); } .button.secondary { border-color:var(--line); color:var(--text); background:transparent; }
-    .button.secondary:hover { border-color:var(--acid-dim); color:var(--acid); background:rgba(0,255,102,.04); box-shadow:none; } .cursor { display:inline-block; width:9px; height:1em; margin-left:3px; vertical-align:-.15em; background:var(--acid); box-shadow:0 0 10px var(--acid); animation:blink 1s steps(2) infinite; } @keyframes blink { 50% { opacity:0; } }
-    .terminal { border:1px solid var(--line); background:var(--panel); box-shadow:14px 14px 0 rgba(0,0,0,.2); } .terminal-bar { display:flex; align-items:center; gap:7px; height:34px; padding:0 13px; border-bottom:1px solid var(--line); background:#121a1c; }
-    .dot { width:7px; height:7px; border-radius:50%; background:var(--red); } .dot:nth-child(2) { background:var(--amber); } .dot:nth-child(3) { background:var(--acid); } .terminal-title { margin-left:auto; color:var(--muted); font:400 10px var(--mono); }
-    .terminal-body { padding:24px; font:400 12px/2 var(--mono); overflow-wrap:anywhere; } .prompt { color:var(--acid); } .terminal-body .value { color:var(--text); } .terminal-body .comment { color:#52716a; }
-    .ascii { max-width:100%; margin:16px 0; color:var(--acid); font-size:clamp(8px,1.15vw,13px); line-height:1.25; overflow:hidden; text-shadow:0 0 12px rgba(0,255,102,.45); } .signal { display:flex; align-items:center; gap:9px; margin-top:14px; }
-    .signal span { width:5px; height:14px; background:var(--acid); box-shadow:0 0 7px var(--acid); } .signal span:nth-child(2) { height:22px; } .signal span:nth-child(3) { height:10px; } .signal span:nth-child(4) { height:18px; }
-    section { padding:102px 0; border-top:1px solid rgba(38,52,56,.7); } .section-heading { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:42px; }
-    .section-heading h2 { margin:8px 0 0; color:#edf7f1; font:500 clamp(28px,4vw,46px)/1.05 var(--mono); letter-spacing:-.07em; } .section-number { color:var(--acid); font:400 12px var(--mono); } .section-intro { max-width:390px; margin:0; color:var(--muted); font-size:14px; }
-    .about-layout { display:grid; grid-template-columns:.95fr 1.05fr; gap:28px; } .log-list { margin:0; padding:0; list-style:none; } .log-list li { display:grid; grid-template-columns:90px 1fr; gap:18px; padding:15px 0; border-bottom:1px dashed var(--line); font:400 12px var(--mono); } .log-list li:last-child { border-bottom:0; }
-    .log-key { color:var(--acid-dim); } .log-value { color:var(--text); } .skill-area { padding:6px 0; } .skill-area h3 { margin:0 0 20px; color:var(--acid); font:400 13px var(--mono); } .skills { display:flex; flex-wrap:wrap; gap:9px; }
-    .skill { padding:8px 11px; border:1px solid var(--line); color:#a7c1b7; background:var(--panel); font:400 11px var(--mono); transition:border-color .2s ease,color .2s ease,transform .2s ease; } .skill:hover { border-color:var(--acid); color:var(--acid); transform:translateY(-2px); } .quote { margin:45px 0 0; padding-left:17px; border-left:2px solid var(--acid); color:#9fb2ad; font-size:18px; }
-    .project-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; } .project { position:relative; min-height:320px; display:flex; flex-direction:column; padding:23px; border:1px solid var(--line); background:linear-gradient(145deg,#11191b,var(--panel)); transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease; }
-    .project::before { position:absolute; top:-1px; left:22px; width:38px; height:2px; background:var(--acid); box-shadow:0 0 12px var(--acid); content:''; } .project:hover { border-color:var(--acid-dim); box-shadow:0 0 30px rgba(0,255,102,.1); transform:translateY(-5px); }
-    .project-meta { display:flex; justify-content:space-between; color:var(--muted); font:400 11px var(--mono); } .project-icon { margin:25px 0 12px; color:var(--acid); font:500 27px var(--mono); text-shadow:0 0 12px rgba(0,255,102,.35); } .project h3 { margin:0 0 9px; color:#e1eee8; font:500 20px var(--mono); } .project p { margin:0; color:var(--muted); font-size:13px; }
-    .tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:auto; padding-top:24px; } .tag { color:var(--acid-dim); font:400 10px var(--mono); } .tag::before { content:'#'; } .project-link { display:inline-block; margin-top:20px; color:var(--acid); font:400 11px var(--mono); } .project-link:hover { text-decoration:underline; text-underline-offset:4px; }
-    .contact-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:30px; align-items:start; } .contact-title { margin:0 0 18px; color:#edf7f1; font:500 clamp(28px,4vw,47px)/1.1 var(--mono); letter-spacing:-.07em; } .contact-copy { max-width:480px; color:var(--muted); } .contact-terminal { border-color:var(--acid-dim); } .contact-terminal .terminal-body { min-height:185px; } .contact-terminal a { color:var(--acid); } .contact-terminal a:hover { text-decoration:underline; text-underline-offset:4px; }
-    footer { padding:25px 0 32px; border-top:1px solid var(--line); color:var(--muted); font:400 11px var(--mono); } .footer-row { display:flex; justify-content:space-between; gap:20px; } .footer-row strong { color:var(--acid); font-weight:400; }
-    @media (max-width:800px) { .wrap { width:min(100% - 30px,620px); } .nav { min-height:62px; } .nav-links { display:none; } .hero { min-height:auto; padding:80px 0 85px; } .hero-grid,.about-layout,.contact-grid { grid-template-columns:1fr; gap:45px; } .hero::after { right:-60%; bottom:-12%; width:120vw; height:120vw; } h1 { font-size:clamp(48px,15vw,80px); } .project-grid { grid-template-columns:1fr; } section { padding:75px 0; } .section-heading { display:block; } .section-intro { margin-top:18px; } .terminal-body { overflow-x:auto; } }
-    @media (max-width:560px) { .wrap { width:calc(100% - 30px); } .hero { padding:62px 0 70px; } .hero-grid,.about-layout,.contact-grid { gap:34px; } .hero-copy { font-size:16px; } .hero-actions { flex-direction:column; align-items:stretch; margin-top:26px; } .button { width:100%; } section { padding:62px 0; } .section-heading { margin-bottom:30px; } .section-heading h2 { font-size:32px; } .section-intro { font-size:13px; } .terminal-body { padding:18px 15px; } .ascii { font-size:7px; } .project { min-height:0; padding:20px; } .project-icon { margin-top:20px; } .quote { margin-top:34px; font-size:16px; } }
-    @media (max-width:430px) { .nav-status { display:none; } .brand { font-size:13px; } .log-list li { grid-template-columns:70px 1fr; gap:10px; } .footer-row { display:block; } .footer-row span { display:block; margin-top:8px; } }
-  </style>
-</head>
-<body>
-  <header class="topbar"><nav class="nav wrap" aria-label="Primary navigation"><a class="brand" href="#top"><span class="brand-mark">&gt;_</span> RYAN_OS</a><div class="nav-links"><a href="#about">/about</a><a href="#work">/workbench</a><a href="#contact">/connect</a></div><span class="nav-status">SYSTEMS ONLINE</span></nav></header>
-  <main id="top">
-    <section class="hero"><div class="hero-grid wrap"><div><div class="eyebrow">// student · developer · always learning</div><h1>Hi, I'm <span>Ryan</span><span class="cursor" aria-hidden="true"></span></h1><p class="hero-copy">I turn <strong>curiosity into useful software</strong> and half-formed ideas into digital projects that feel good to use.</p><div class="hero-actions"><a class="button" href="#work">[ view_work ] <span>↘</span></a><a class="button secondary" href="#contact">[ say_hello ]</a></div></div><div class="terminal" aria-label="Ryan's system status"><div class="terminal-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="terminal-title">ryan@localhost:~</span></div><div class="terminal-body"><div><span class="prompt">ryan@home:~$</span> <span class="value">whoami</span></div>
-      <pre class="ascii"> ____                    
-|  _ \ _   _  __ _ _ __  
-| |_) | | | |/ _` | '_ \ 
-|  _ &lt;| |_| | (_| | | | |
-|_| \_\\__, |\__,_|_| |_|
-       |___/             </pre><div><span class="prompt">role</span> <span class="value">student &amp; developer</span></div><div><span class="prompt">focus</span> <span class="value">learning, building, exploring</span></div><div><span class="prompt">status</span> <span class="value">working on something interesting</span></div><div class="signal" aria-label="Signal strength: excellent"><span></span><span></span><span></span><span></span><span></span></div><div class="comment">// last packet: just now</div></div></div></div></section>
-    <section id="about"><div class="wrap"><div class="section-heading"><div><div class="section-number">01 / IDENTITY</div><h2>About Me</h2></div><p class="section-intro">I am a student who likes learning by making things. This is a small collection of what I am exploring right now.</p></div><div class="about-layout"><div class="terminal"><div class="terminal-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="terminal-title">about.log</span></div><div class="terminal-body"><ul class="log-list"><li><span class="log-key">[currently]</span><span class="log-value">studying and figuring things out</span></li><li><span class="log-key">[learning]</span><span class="log-value">web development and new technology</span></li><li><span class="log-key">[interests]</span><span class="log-value">interfaces, systems, and small details</span></li><li><span class="log-key">[approach]</span><span class="log-value">learn something, then build with it</span></li></ul></div></div><div class="skill-area"><h3>things I enjoy working with = [</h3><div class="skills"><span class="skill">JavaScript</span><span class="skill">TypeScript</span><span class="skill">React</span><span class="skill">Node.js</span><span class="skill">HTML / CSS</span><span class="skill">Cloudflare</span><span class="skill">Git</span><span class="skill">Figma</span></div><p class="quote">I like taking an idea, learning what I need, and seeing where it goes.</p></div></div></div></section>
-    <section id="work"><div class="wrap"><div class="section-heading"><div><div class="section-number">02 / OUTPUT</div><h2>Selected Work</h2></div><p class="section-intro">A few signals from the workbench. Each one started as a question.</p></div><div class="project-grid"><article class="project"><div class="project-meta"><span>PROJECT_001</span><span>2024</span></div><div class="project-icon">[◎]</div><h3>Orbit Notes</h3><p>A calm, fast space for connecting thoughts and finding the thread between them.</p><div class="tags"><span class="tag">react</span><span class="tag">local-first</span><span class="tag">productivity</span></div><a class="project-link" href="https://github.com/Jackson-Ryan" target="_blank" rel="noreferrer">open repository ↗</a></article><article class="project"><div class="project-meta"><span>PROJECT_002</span><span>2023</span></div><div class="project-icon">[//]</div><h3>Signal Garden</h3><p>An interactive data experiment turning live weather patterns into a generative landscape.</p><div class="tags"><span class="tag">javascript</span><span class="tag">canvas</span><span class="tag">api</span></div><a class="project-link" href="https://github.com/Jackson-Ryan" target="_blank" rel="noreferrer">launch experiment ↗</a></article><article class="project"><div class="project-meta"><span>PROJECT_003</span><span>2023</span></div><div class="project-icon">[+]</div><h3>Good Defaults</h3><p>A small open-source library of thoughtful, accessible interface building blocks.</p><div class="tags"><span class="tag">typescript</span><span class="tag">design-system</span><span class="tag">a11y</span></div><a class="project-link" href="https://github.com/Jackson-Ryan" target="_blank" rel="noreferrer">view the source ↗</a></article></div></div></section>
-    <section id="contact"><div class="wrap contact-grid"><div><div class="section-number">03 / UPLINK</div><h2 class="contact-title">Come say<br><span style="color:var(--acid)">hello.</span></h2><p class="contact-copy">If you want to talk about a project, share an idea, or just compare notes on something interesting, I would be happy to hear from you.</p><a class="button" href="mailto:hello@ryanjackson.tech">send_message() <span>↗</span></a></div><div class="terminal contact-terminal"><div class="terminal-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="terminal-title">connect.sh</span></div><div class="terminal-body"><div><span class="prompt">$</span> ./connect --channels</div><br><div><span class="prompt">&gt;</span> email: <a href="mailto:hello@ryanjackson.tech">hello@ryanjackson.tech</a></div><div><span class="prompt">&gt;</span> github: <a href="https://github.com/Jackson-Ryan" target="_blank" rel="noreferrer">github.com/Jackson-Ryan</a></div><div><span class="prompt">&gt;</span> status: <span style="color:var(--acid)">always happy to hear from another curious mind</span></div><br><div class="comment">// always happy to hear from another curious mind</div></div></div></div></section>
-  </main>
-  <footer><div class="wrap footer-row"><strong>RYAN_OS // v1.0.0</strong><span>crafted with intent · deployed on the edge</span><span>© <span id="current-year">2026</span> Ryan</span></div></footer>
-  <script>
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-    document.querySelector('.ascii').textContent = String.raw` ____  __   __    _    _   _
-  |  _ \ \ \ / /   / \  | \ | |
-  | |_) | \ V /   / _ \ |  \| |
-  |  _ <   | |   / ___ \| |\  |
-  |_| \_\  |_|  /_/   \_\_| \_|`;
-  </script>
-</body>
+<html lang="en" data-theme="paper">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f1ea" id="meta-theme-color" />
+    <meta
+      name="description"
+      content="Ryan Jackson — Developer & student exploring software engineering, interactive systems, and mathematical computing."
+    />
+    <title>Ryan Jackson — Software & Interactive Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root,
+      [data-theme="paper"] {
+        --bg: #f4f1ea;
+        --bg-elevated: #fbf9f5;
+        --bg-subtle: #ebe6dc;
+        --ink: #141413;
+        --ink-muted: #5c5a54;
+        --ink-faint: #8c887f;
+        --line: #d8d3c8;
+        --accent: #ff4800;
+        --accent-soft: rgba(255, 72, 0, 0.1);
+        --shadow: rgba(20, 20, 19, 0.06);
+      }
+
+      [data-theme="carbon"] {
+        --bg: #121211;
+        --bg-elevated: #1a1a18;
+        --bg-subtle: #22221f;
+        --ink: #f0ede6;
+        --ink-muted: #9e9b93;
+        --ink-faint: #686660;
+        --line: #2c2c29;
+        --accent: #ff5917;
+        --accent-soft: rgba(255, 89, 23, 0.14);
+        --shadow: rgba(0, 0, 0, 0.35);
+      }
+
+      [data-theme="blueprint"] {
+        --bg: #0b1d33;
+        --bg-elevated: #102742;
+        --bg-subtle: #163254;
+        --ink: #eaf2fb;
+        --ink-muted: #9ab4d1;
+        --ink-faint: #5c7ea3;
+        --line: #21436b;
+        --accent: #ffb000;
+        --accent-soft: rgba(255, 176, 0, 0.15);
+        --shadow: rgba(3, 10, 20, 0.4);
+      }
+
+      :root {
+        --serif: "Instrument Serif", Georgia, serif;
+        --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+        --mono: "JetBrains Mono", monospace;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.55;
+        transition:
+          background-color 0.35s var(--ease),
+          color 0.35s var(--ease);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: #ffffff;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+
+      /* Architectural Grid Container */
+      .frame {
+        max-width: 1240px;
+        margin: 0 auto;
+        border-left: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+        min-height: 100vh;
+      }
+
+      /* Top Navigation */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: color-mix(in srgb, var(--bg) 86%, transparent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-bar {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        height: 64px;
+        padding: 0 28px;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: -0.02em;
+      }
+
+      .brand-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: inline-block;
+        transition: transform 0.3s var(--ease);
+      }
+
+      .brand:hover .brand-dot {
+        transform: scale(1.35);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        justify-self: center;
+        font-size: 14px;
+        color: var(--ink-muted);
+      }
+
+      .nav-links a {
+        position: relative;
+        padding: 4px 0;
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1.5px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s var(--ease);
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .nav-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .control-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 32px;
+        padding: 0 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--bg-elevated);
+        color: var(--ink-muted);
+        font-family: var(--mono);
+        font-size: 11px;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease,
+          transform 0.15s ease;
+      }
+
+      .control-btn:hover {
+        border-color: var(--ink-muted);
+        color: var(--ink);
+      }
+
+      .control-btn:active {
+        transform: scale(0.96);
+      }
+
+      .control-btn[data-active="true"] {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      .kbd {
+        padding: 1px 5px;
+        border-radius: 4px;
+        background: var(--bg-subtle);
+        font-size: 10px;
+        color: var(--ink);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero-content {
+        padding: 68px 44px 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid var(--line);
+      }
+
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .meta-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--bg-subtle);
+        color: var(--ink);
+      }
+
+      .pulse {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        animation: pulse-ring 2.4s infinite;
+      }
+
+      @keyframes pulse-ring {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+
+      .hero-headline {
+        margin: 36px 0 24px;
+        font-weight: 500;
+        font-size: clamp(42px, 5.4vw, 72px);
+        line-height: 1.03;
+        letter-spacing: -0.035em;
+      }
+
+      .hero-headline em {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-style: italic;
+        font-size: 1.12em;
+        color: var(--accent);
+        padding-right: 4px;
+      }
+
+      .hero-lead {
+        max-width: 520px;
+        margin: 0 0 38px;
+        font-size: 17px;
+        color: var(--ink-muted);
+        line-height: 1.65;
+      }
+
+      .hero-lead strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        height: 46px;
+        padding: 0 22px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--bg);
+        font-weight: 500;
+        font-size: 14px;
+        border: 1px solid var(--ink);
+        transition:
+          background 0.25s var(--ease),
+          border-color 0.25s var(--ease),
+          color 0.25s var(--ease),
+          transform 0.2s var(--ease);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #ffffff;
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        height: 46px;
+        padding: 0 20px;
+        border-radius: 999px;
+        background: var(--bg-elevated);
+        color: var(--ink);
+        font-weight: 500;
+        font-size: 14px;
+        border: 1px solid var(--line);
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease,
+          transform 0.2s var(--ease);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--ink);
+        transform: translateY(-2px);
+      }
+
+      .hero-footnotes {
+        margin-top: 52px;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        font-family: var(--mono);
+        font-size: 11px;
+      }
+
+      .footnote-label {
+        color: var(--ink-faint);
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .footnote-val {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* Interactive Physics Lab Column */
+      .hero-lab {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-elevated);
+        min-height: 520px;
+      }
+
+      .lab-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: 11px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .lab-modes {
+        display: flex;
+        gap: 4px;
+        background: var(--bg-subtle);
+        padding: 3px;
+        border-radius: 8px;
+      }
+
+      .mode-btn {
+        border: none;
+        background: transparent;
+        color: var(--ink-muted);
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 5px 10px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .mode-btn.active {
+        background: var(--bg-elevated);
+        color: var(--ink);
+        box-shadow: 0 1px 3px var(--shadow);
+      }
+
+      .lab-canvas-wrap {
+        position: relative;
+        flex: 1;
+        width: 100%;
+        min-height: 400px;
+        cursor: crosshair;
+        overflow: hidden;
+      }
+
+      #physics-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .lab-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 18px;
+        border-top: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-muted);
+      }
+
+      .energy-bar-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .energy-track {
+        width: 72px;
+        height: 5px;
+        background: var(--bg-subtle);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+
+      .energy-fill {
+        height: 100%;
+        width: 15%;
+        background: var(--accent);
+        transition: width 0.1s linear;
+      }
+
+      /* Section Headers */
+      .section-bar {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        padding: 28px 44px;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg);
+      }
+
+      .section-index {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        margin: 6px 0 0;
+        font-size: clamp(26px, 3.2vw, 38px);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .section-title em {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .section-sub {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-muted);
+      }
+
+      /* Projects Grid */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid var(--line);
+        background: var(--bg);
+        transition: background-color 0.3s ease;
+        position: relative;
+      }
+
+      .project-card:last-child {
+        border-right: none;
+      }
+
+      .project-card:hover {
+        background: var(--bg-elevated);
+      }
+
+      /* Interactive Micro-Preview inside each project card */
+      .project-stage {
+        height: 210px;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-subtle);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .stage-badge {
+        position: absolute;
+        top: 12px;
+        left: 14px;
+        z-index: 2;
+        font-family: var(--mono);
+        font-size: 10px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: color-mix(in srgb, var(--bg-elevated) 85%, transparent);
+        backdrop-filter: blur(6px);
+        border: 1px solid var(--line);
+        color: var(--ink-muted);
+      }
+
+      .stage-canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        cursor: grab;
+      }
+
+      .stage-canvas:active {
+        cursor: grabbing;
+      }
+
+      /* Good Defaults interactive UI sandbox */
+      .ui-sandbox {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 20px;
+        width: 86%;
+        max-width: 280px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px var(--shadow);
+      }
+
+      .sandbox-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: var(--mono);
+        font-size: 11px;
+      }
+
+      .tactile-toggle {
+        width: 42px;
+        height: 24px;
+        border-radius: 99px;
+        background: var(--bg-subtle);
+        border: 1px solid var(--line);
+        position: relative;
+        padding: 2px;
+        transition: background 0.25s ease, border-color 0.25s ease;
+      }
+
+      .tactile-toggle[aria-checked="true"] {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .tactile-knob {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        display: block;
+        transition: transform 0.25s var(--ease);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      }
+
+      .tactile-toggle[aria-checked="true"] .tactile-knob {
+        transform: translateX(18px);
+      }
+
+      .tactile-slider {
+        width: 100%;
+        accent-color: var(--accent);
+        cursor: pointer;
+      }
+
+      .project-body {
+        padding: 28px 30px 32px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 10px;
+      }
+
+      .project-title {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .project-year {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-faint);
+      }
+
+      .project-desc {
+        margin: 0 0 24px;
+        color: var(--ink-muted);
+        font-size: 14.5px;
+        line-height: 1.6;
+      }
+
+      .project-footer {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 18px;
+        border-top: 1px dashed var(--line);
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: var(--bg-subtle);
+        color: var(--ink-muted);
+      }
+
+      .project-link {
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: color 0.2s ease, transform 0.2s ease;
+      }
+
+      .project-link:hover {
+        color: var(--accent);
+        transform: translateX(3px);
+      }
+
+      /* Bento Section: About, Lissajous Synth & Disciplines */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .bento-left {
+        padding: 44px;
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .editorial-prose {
+        font-size: 19px;
+        line-height: 1.65;
+        color: var(--ink);
+        margin: 0 0 28px;
+      }
+
+      .editorial-prose span {
+        color: var(--ink-muted);
+      }
+
+      .spec-table {
+        margin-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+
+      .spec-row {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+      }
+
+      .spec-key {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-faint);
+        text-transform: uppercase;
+      }
+
+      .spec-val {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .skill-matrix {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 28px;
+      }
+
+      .skill-chip {
+        padding: 7px 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 12px;
+        background: var(--bg-elevated);
+        color: var(--ink);
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .skill-chip:hover {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+        transform: translateY(-2px);
+      }
+
+      /* Harmonic Lissajous Widget */
+      .bento-right {
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-elevated);
+      }
+
+      .lissajous-stage {
+        position: relative;
+        flex: 1;
+        min-height: 290px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid var(--line);
+      }
+
+      #lissajous-canvas {
+        width: 100%;
+        height: 100%;
+        max-height: 320px;
+        display: block;
+      }
+
+      .lissajous-controls {
+        padding: 24px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+
+      .slider-group {
+        display: grid;
+        grid-template-columns: 110px 1fr 48px;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .slider-group label {
+        color: var(--ink-muted);
+      }
+
+      .slider-readout {
+        text-align: right;
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 76px 44px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 40px;
+        align-items: center;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-elevated);
+      }
+
+      .contact-heading {
+        margin: 10px 0 18px;
+        font-size: clamp(36px, 4.5vw, 60px);
+        line-height: 1.04;
+        letter-spacing: -0.035em;
+      }
+
+      .contact-heading em {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .contact-card {
+        padding: 28px;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .email-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        font-family: var(--mono);
+        font-size: 13px;
+        gap: 12px;
+      }
+
+      .copy-btn {
+        border: 1px solid var(--line);
+        background: var(--bg-subtle);
+        color: var(--ink);
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .copy-btn:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #ffffff;
+      }
+
+      .social-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .social-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        font-family: var(--mono);
+        font-size: 12px;
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .social-item:hover {
+        border-color: var(--ink);
+        background: var(--bg-elevated);
+      }
+
+      /* Footer */
+      .footer {
+        padding: 24px 44px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-muted);
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      /* Command Palette Modal */
+      .cmd-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 10, 0.55);
+        backdrop-filter: blur(5px);
+        z-index: 100;
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 14vh;
+      }
+
+      .cmd-backdrop.open {
+        display: flex;
+      }
+
+      .cmd-modal {
+        width: min(520px, calc(100% - 32px));
+        background: var(--bg-elevated);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+      }
+
+      .cmd-input-wrap {
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cmd-input {
+        width: 100%;
+        border: none;
+        background: transparent;
+        color: var(--ink);
+        font-family: var(--mono);
+        font-size: 13px;
+        outline: none;
+      }
+
+      .cmd-list {
+        list-style: none;
+        margin: 0;
+        padding: 8px;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .cmd-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+
+      .cmd-item:hover {
+        background: var(--bg-subtle);
+      }
+
+      .cmd-item span:last-child {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-faint);
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 90;
+        background: var(--ink);
+        color: var(--bg);
+        font-family: var(--mono);
+        font-size: 12px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        box-shadow: 0 10px 30px var(--shadow);
+        transform: translateY(20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.25s var(--ease);
+      }
+
+      .toast.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Responsive Breakpoints */
+      @media (max-width: 980px) {
+        .hero,
+        .bento-grid,
+        .contact-section {
+          grid-template-columns: 1fr;
+        }
+        .hero-content,
+        .bento-left {
+          border-right: none;
+          border-bottom: 1px solid var(--line);
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .project-card {
+          border-right: none;
+          border-bottom: 1px solid var(--line);
+        }
+        .project-card:last-child {
+          border-bottom: none;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .nav-links {
+          display: none;
+        }
+        .hero-content,
+        .bento-left,
+        .contact-section,
+        .section-bar,
+        .footer {
+          padding-left: 22px;
+          padding-right: 22px;
+        }
+        .hero-footnotes {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .spec-row {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <!-- Top Bar -->
+      <header class="header">
+        <nav class="nav-bar" aria-label="Primary">
+          <a href="#top" class="brand" data-sfx>
+            <span class="brand-dot"></span>
+            <span>Ryan Jackson</span>
+          </a>
+
+          <div class="nav-links">
+            <a href="#work" data-sfx>Selected Work</a>
+            <a href="#laboratory" data-sfx>About &amp; Lab</a>
+            <a href="#contact" data-sfx>Correspondence</a>
+          </div>
+
+          <div class="nav-controls">
+            <button
+              type="button"
+              class="control-btn"
+              id="sfx-toggle"
+              data-active="false"
+              title="Toggle tactile UI sound synthesis"
+            >
+              <span>SFX</span>
+              <span id="sfx-state">OFF</span>
+            </button>
+            <button
+              type="button"
+              class="control-btn"
+              id="theme-toggle"
+              title="Cycle color theme"
+            >
+              <span id="theme-label">PAPER</span>
+            </button>
+            <button
+              type="button"
+              class="control-btn"
+              id="cmd-trigger"
+              title="Open command palette"
+            >
+              <span>Menu</span>
+              <span class="kbd">⌘K</span>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Hero Section -->
+      <main id="top">
+        <section class="hero">
+          <div class="hero-content">
+            <div>
+              <div class="meta-strip">
+                <span class="meta-pill">
+                  <span class="pulse"></span>
+                  <span>UK · <span id="uk-clock">--:--:--</span></span>
+                </span>
+                <span>CS · Physics · Further Maths</span>
+              </div>
+
+              <h1 class="hero-headline">
+                Building software with <em>physical</em> intuition &amp;
+                clarity.
+              </h1>
+
+              <p class="hero-lead">
+                I’m <strong>Ryan Jackson</strong>, a developer and student in the
+                UK. I enjoy turning mathematical ideas, simulations, and fast
+                web architectures into tools that feel genuinely tactile to use.
+              </p>
+
+              <div class="cta-row">
+                <a href="#work" class="btn-primary" data-sfx>
+                  <span>Explore Projects</span>
+                  <span>↓</span>
+                </a>
+                <button
+                  type="button"
+                  class="btn-secondary"
+                  id="hero-copy-email"
+                  data-sfx
+                >
+                  <span>hello@ryanjackson.tech</span>
+                  <span style="color: var(--ink-faint)">⧉</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="hero-footnotes">
+              <div>
+                <span class="footnote-label">FOCUS</span>
+                <span class="footnote-val">Interfaces &amp; Simulation</span>
+              </div>
+              <div>
+                <span class="footnote-label">STACK</span>
+                <span class="footnote-val">TypeScript · React · Node</span>
+              </div>
+              <div>
+                <span class="footnote-label">GITHUB</span>
+                <a
+                  href="https://github.com/Jackson-Ryan"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="footnote-val"
+                  style="text-decoration: underline; text-underline-offset: 3px"
+                >
+                  @Jackson-Ryan ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Field Simulation -->
+          <div class="hero-lab" aria-label="Interactive Physics Canvas">
+            <div class="lab-toolbar">
+              <span>FIG 1.0 — INTERACTIVE FIELD</span>
+              <div class="lab-modes" role="tablist">
+                <button
+                  type="button"
+                  class="mode-btn active"
+                  data-mode="lattice"
+                  data-sfx
+                >
+                  Elastic Mesh
+                </button>
+                <button
+                  type="button"
+                  class="mode-btn"
+                  data-mode="dipoles"
+                  data-sfx
+                >
+                  Vector Dipoles
+                </button>
+                <button
+                  type="button"
+                  class="mode-btn"
+                  data-mode="orbit"
+                  data-sfx
+                >
+                  Gravity Wells
+                </button>
+              </div>
+            </div>
+
+            <div class="lab-canvas-wrap" id="canvas-container">
+              <canvas id="physics-canvas"></canvas>
+            </div>
+
+            <div class="lab-footer">
+              <span id="lab-hint">Drag or click canvas to perturb system</span>
+              <div class="energy-bar-wrap">
+                <span>E_k</span>
+                <div class="energy-track">
+                  <div class="energy-fill" id="energy-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 01 / Selected Work -->
+        <div class="section-bar" id="work">
+          <div>
+            <div class="section-index">01 / Selected Work</div>
+            <h2 class="section-title">
+              Engineered artifacts &amp; <em>experiments</em>
+            </h2>
+          </div>
+          <div class="section-sub">INTERACTIVE PREVIEWS — TRY THEM BELOW</div>
+        </div>
+
+        <section class="projects-grid">
+          <!-- Project 1: Orbit Notes -->
+          <article class="project-card">
+            <div class="project-stage">
+              <span class="stage-badge">Interactive Node Graph — Drag Nodes</span>
+              <canvas class="stage-canvas" id="orbit-preview"></canvas>
+            </div>
+            <div class="project-body">
+              <div class="project-header">
+                <h3 class="project-title">Orbit Notes</h3>
+                <span class="project-year">2024</span>
+              </div>
+              <p class="project-desc">
+                A calm, local-first knowledge workspace designed for linking
+                atomic thoughts and visualizing the semantic graph between them.
+              </p>
+              <div class="project-footer">
+                <div class="tag-list">
+                  <span class="tag">React</span>
+                  <span class="tag">Local-First</span>
+                  <span class="tag">Graph</span>
+                </div>
+                <a
+                  href="https://github.com/Jackson-Ryan"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="project-link"
+                  data-sfx
+                >
+                  Source ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Signal Garden -->
+          <article class="project-card">
+            <div class="project-stage">
+              <span class="stage-badge">Live Contour Field — Move Cursor</span>
+              <canvas class="stage-canvas" id="signal-preview"></canvas>
+            </div>
+            <div class="project-body">
+              <div class="project-header">
+                <h3 class="project-title">Signal Garden</h3>
+                <span class="project-year">2023</span>
+              </div>
+              <p class="project-desc">
+                An interactive data experiment translating live meteorological
+                telemetry into a continuous, generative topographic landscape.
+              </p>
+              <div class="project-footer">
+                <div class="tag-list">
+                  <span class="tag">Canvas 2D</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Telemetry</span>
+                </div>
+                <a
+                  href="https://github.com/Jackson-Ryan"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="project-link"
+                  data-sfx
+                >
+                  Explore ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Good Defaults -->
+          <article class="project-card">
+            <div class="project-stage">
+              <span class="stage-badge">Live Primitives — Click &amp; Drag</span>
+              <div class="ui-sandbox" aria-label="Interactive UI primitives demo">
+                <div class="sandbox-row">
+                  <span>Spring Physics</span>
+                  <button
+                    type="button"
+                    class="tactile-toggle"
+                    role="switch"
+                    aria-checked="true"
+                    id="demo-switch-1"
+                    data-sfx
+                  >
+                    <span class="tactile-knob"></span>
+                  </button>
+                </div>
+                <div class="sandbox-row">
+                  <span>Reduced Motion</span>
+                  <button
+                    type="button"
+                    class="tactile-toggle"
+                    role="switch"
+                    aria-checked="false"
+                    id="demo-switch-2"
+                    data-sfx
+                  >
+                    <span class="tactile-knob"></span>
+                  </button>
+                </div>
+                <div class="sandbox-row" style="gap: 10px">
+                  <span>Tension</span>
+                  <input
+                    type="range"
+                    min="10"
+                    max="100"
+                    value="68"
+                    class="tactile-slider"
+                    id="demo-slider"
+                    aria-label="Tension"
+                  />
+                  <span id="demo-slider-val" style="min-width: 28px">68%</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-header">
+                <h3 class="project-title">Good Defaults</h3>
+                <span class="project-year">2023</span>
+              </div>
+              <p class="project-desc">
+                A lightweight, unstyled collection of accessible interface
+                primitives with keyboard navigation and crisp tactile feedback
+                out of the box.
+              </p>
+              <div class="project-footer">
+                <div class="tag-list">
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">Design System</span>
+                  <span class="tag">WAI-ARIA</span>
+                </div>
+                <a
+                  href="https://github.com/Jackson-Ryan"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="project-link"
+                  data-sfx
+                >
+                  Inspect ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- 02 / About & Harmonic Playground -->
+        <div class="section-bar" id="laboratory">
+          <div>
+            <div class="section-index">02 / Background &amp; Playground</div>
+            <h2 class="section-title">
+              Where mathematics meets <em>craft</em>
+            </h2>
+          </div>
+          <div class="section-sub">DISCIPLINES &amp; HARMONIC OSCILLATOR</div>
+        </div>
+
+        <section class="bento-grid">
+          <div class="bento-left">
+            <div>
+              <p class="editorial-prose">
+                I learn best by building things from first principles. Studying
+                <strong>Physics, Computer Science, and Further Mathematics</strong>
+                shapes how I write software—whether that’s optimizing a rendering
+                loop, structuring type-safe APIs, or sweating the micro-interactions
+                of an interface.
+              </p>
+
+              <div class="spec-table">
+                <div class="spec-row">
+                  <span class="spec-key">Academic Focus</span>
+                  <span class="spec-val">
+                    Physics, Computer Science, Mathematics &amp; Further Maths
+                  </span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Engineering</span>
+                  <span class="spec-val">
+                    Full-stack web applications, interactive graphics &amp; edge
+                    systems
+                  </span>
+                </div>
+                <div class="spec-row">
+                  <span class="spec-key">Philosophy</span>
+                  <span class="spec-val">
+                    Zero bloat, fast load times, and interfaces that respect the
+                    user
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-matrix" aria-label="Technical skills">
+              <span class="skill-chip" data-sfx>TypeScript</span>
+              <span class="skill-chip" data-sfx>JavaScript (ES2026)</span>
+              <span class="skill-chip" data-sfx>React</span>
+              <span class="skill-chip" data-sfx>Node.js</span>
+              <span class="skill-chip" data-sfx>HTML5 Canvas / WebGL</span>
+              <span class="skill-chip" data-sfx>Python</span>
+              <span class="skill-chip" data-sfx>Cloudflare Workers</span>
+              <span class="skill-chip" data-sfx>Git</span>
+              <span class="skill-chip" data-sfx>Figma</span>
+            </div>
+          </div>
+
+          <!-- Interactive Lissajous Curve Widget -->
+          <div class="bento-right">
+            <div class="lab-toolbar">
+              <span>FIG 2.0 — HARMONIC PHASE OSCILLATOR</span>
+              <span>x(t) = sin(ωₓt + δ)</span>
+            </div>
+            <div class="lissajous-stage">
+              <canvas id="lissajous-canvas"></canvas>
+            </div>
+            <div class="lissajous-controls">
+              <div class="slider-group">
+                <label for="freq-x">Freq ωₓ</label>
+                <input
+                  type="range"
+                  id="freq-x"
+                  min="1"
+                  max="9"
+                  step="1"
+                  value="3"
+                  class="tactile-slider"
+                />
+                <span class="slider-readout" id="freq-x-val">3 Hz</span>
+              </div>
+              <div class="slider-group">
+                <label for="freq-y">Freq ωᵧ</label>
+                <input
+                  type="range"
+                  id="freq-y"
+                  min="1"
+                  max="9"
+                  step="1"
+                  value="4"
+                  class="tactile-slider"
+                />
+                <span class="slider-readout" id="freq-y-val">4 Hz</span>
+              </div>
+              <div class="slider-group">
+                <label for="phase-speed">Modulation</label>
+                <input
+                  type="range"
+                  id="phase-speed"
+                  min="0"
+                  max="100"
+                  value="35"
+                  class="tactile-slider"
+                />
+                <span class="slider-readout" id="phase-speed-val">0.35 rad/s</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 / Contact -->
+        <section class="contact-section" id="contact">
+          <div>
+            <div class="section-index">03 / Correspondence</div>
+            <h2 class="contact-heading">
+              Have an idea or project? <em>Let’s talk.</em>
+            </h2>
+            <p class="hero-lead" style="margin-bottom: 0">
+              Whether you want to collaborate on a project, discuss software and
+              physics, or just say hello, my inbox is always open.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <div class="email-box">
+              <span>hello@ryanjackson.tech</span>
+              <button type="button" class="copy-btn" id="card-copy-email" data-sfx>
+                Copy Address
+              </button>
+            </div>
+            <div class="social-links">
+              <a
+                href="mailto:hello@ryanjackson.tech"
+                class="social-item"
+                data-sfx
+              >
+                <span>Open Mail App</span>
+                <span>↗</span>
+              </a>
+              <a
+                href="https://github.com/Jackson-Ryan"
+                target="_blank"
+                rel="noreferrer"
+                class="social-item"
+                data-sfx
+              >
+                <span>GitHub Profile</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <span>© <span id="year">2026</span> Ryan Jackson — All rights reserved.</span>
+        <span>Press <kbd class="kbd">⌘K</kbd> for quick actions</span>
+      </footer>
+    </div>
+
+    <!-- Command Palette Modal -->
+    <div class="cmd-backdrop" id="cmd-backdrop" role="dialog" aria-modal="true">
+      <div class="cmd-modal">
+        <div class="cmd-input-wrap">
+          <span style="color: var(--accent); font-family: var(--mono)">→</span>
+          <input
+            type="text"
+            class="cmd-input"
+            id="cmd-input"
+            placeholder="Type a command or jump to section..."
+            autocomplete="off"
+          />
+          <span class="kbd">ESC</span>
+        </div>
+        <ul class="cmd-list" id="cmd-list">
+          <li class="cmd-item" data-action="copy-email">
+            <span>Copy email (hello@ryanjackson.tech)</span>
+            <span>Action</span>
+          </li>
+          <li class="cmd-item" data-action="theme-paper">
+            <span>Switch theme: Archival Paper</span>
+            <span>Theme</span>
+          </li>
+          <li class="cmd-item" data-action="theme-carbon">
+            <span>Switch theme: Anodized Carbon (Dark)</span>
+            <span>Theme</span>
+          </li>
+          <li class="cmd-item" data-action="theme-blueprint">
+            <span>Switch theme: Cyanotype Blueprint</span>
+            <span>Theme</span>
+          </li>
+          <li class="cmd-item" data-action="toggle-sfx">
+            <span>Toggle tactile UI sound effects</span>
+            <span>Audio</span>
+          </li>
+          <li class="cmd-item" data-action="goto-work">
+            <span>Jump to Selected Work</span>
+            <span>Navigate</span>
+          </li>
+          <li class="cmd-item" data-action="goto-github">
+            <span>Open GitHub (@Jackson-Ryan)</span>
+            <span>External ↗</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      Copied hello@ryanjackson.tech to clipboard
+    </div>
+
+    <script>
+      // 1. Theme Management (Synced with localStorage for 404.html consistency)
+      const THEMES = ["paper", "carbon", "blueprint"];
+      const THEME_COLORS = {
+        paper: "#f4f1ea",
+        carbon: "#121211",
+        blueprint: "#0b1d33",
+      };
+      const htmlEl = document.documentElement;
+      const themeToggleBtn = document.getElementById("theme-toggle");
+      const themeLabel = document.getElementById("theme-label");
+      const metaThemeColor = document.getElementById("meta-theme-color");
+
+      function applyTheme(theme) {
+        htmlEl.setAttribute("data-theme", theme);
+        themeLabel.textContent = theme.toUpperCase();
+        metaThemeColor.setAttribute("content", THEME_COLORS[theme]);
+        try {
+          localStorage.setItem("ryan_theme", theme);
+        } catch (e) {}
+      }
+
+      const savedTheme = (() => {
+        try {
+          return localStorage.getItem("ryan_theme");
+        } catch (e) {
+          return null;
+        }
+      })();
+      if (savedTheme && THEMES.includes(savedTheme)) {
+        applyTheme(savedTheme);
+      }
+
+      themeToggleBtn.addEventListener("click", () => {
+        const current = htmlEl.getAttribute("data-theme") || "paper";
+        const next = THEMES[(THEMES.indexOf(current) + 1) % THEMES.length];
+        applyTheme(next);
+        playClick(520);
+      });
+
+      // 2. Web Audio API Tactile Sound Synthesizer
+      let sfxEnabled = false;
+      let audioCtx = null;
+      const sfxToggle = document.getElementById("sfx-toggle");
+      const sfxState = document.getElementById("sfx-state");
+
+      function playClick(freq = 360) {
+        if (!sfxEnabled) return;
+        try {
+          if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          }
+          if (audioCtx.state === "suspended") audioCtx.resume();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(
+            90,
+            audioCtx.currentTime + 0.035
+          );
+          gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioCtx.currentTime + 0.035
+          );
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.04);
+        } catch (e) {}
+      }
+
+      sfxToggle.addEventListener("click", () => {
+        sfxEnabled = !sfxEnabled;
+        sfxToggle.setAttribute("data-active", String(sfxEnabled));
+        sfxState.textContent = sfxEnabled ? "ON" : "OFF";
+        if (sfxEnabled) playClick(640);
+      });
+
+      document.querySelectorAll("[data-sfx]").forEach((el) => {
+        el.addEventListener("mouseenter", () => playClick(280));
+        el.addEventListener("click", () => playClick(480));
+      });
+
+      // 3. Live UK Clock & Current Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+      const clockEl = document.getElementById("uk-clock");
+      function updateClock() {
+        clockEl.textContent = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Europe/London",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        }).format(new Date());
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // 4. Copy Email & Toast Notification
+      const toastEl = document.getElementById("toast");
+      let toastTimer = null;
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("visible"), 2600);
+      }
+
+      function copyEmail() {
+        navigator.clipboard.writeText("hello@ryanjackson.tech").then(() => {
+          showToast("Copied hello@ryanjackson.tech to clipboard");
+        });
+      }
+
+      document
+        .getElementById("hero-copy-email")
+        .addEventListener("click", copyEmail);
+      document
+        .getElementById("card-copy-email")
+        .addEventListener("click", copyEmail);
+
+      // 5. Hero Interactive Physics Canvas (Elastic Mesh / Dipoles / Gravity)
+      const canvas = document.getElementById("physics-canvas");
+      const ctx = canvas.getContext("2d");
+      const energyBar = document.getElementById("energy-bar");
+      const labHint = document.getElementById("lab-hint");
+      let simMode = "lattice";
+      let width = 0;
+      let height = 0;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      const pointer = { x: -9999, y: -9999, vx: 0, vy: 0, down: false };
+      let nodes = [];
+      let particles = [];
+      let attractors = [];
+
+      function getThemeColors() {
+        const style = getComputedStyle(document.documentElement);
+        return {
+          ink: style.getPropertyValue("--ink").trim(),
+          muted: style.getPropertyValue("--ink-faint").trim(),
+          line: style.getPropertyValue("--line").trim(),
+          accent: style.getPropertyValue("--accent").trim(),
+        };
+      }
+
+      function initSim() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        width = rect.width;
+        height = rect.height;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        nodes = [];
+        const cols = Math.max(8, Math.floor(width / 36));
+        const rows = Math.max(8, Math.floor(height / 36));
+        const padX = width / (cols + 1);
+        const padY = height / (rows + 1);
+
+        for (let r = 1; r <= rows; r++) {
+          for (let c = 1; c <= cols; c++) {
+            const ox = c * padX;
+            const oy = r * padY;
+            nodes.push({ x: ox, y: oy, ox, oy, vx: 0, vy: 0 });
+          }
+        }
+
+        particles = Array.from({ length: 55 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 2.2,
+          vy: (Math.random() - 0.5) * 2.2,
+          history: [],
+        }));
+
+        attractors = [{ x: width * 0.5, y: height * 0.5, mass: 1600 }];
+      }
+
+      window.addEventListener("resize", initSim);
+      initSim();
+
+      canvas.addEventListener("pointermove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const nx = e.clientX - rect.left;
+        const ny = e.clientY - rect.top;
+        pointer.vx = nx - pointer.x;
+        pointer.vy = ny - pointer.y;
+        pointer.x = nx;
+        pointer.y = ny;
+      });
+
+      canvas.addEventListener("pointerleave", () => {
+        pointer.x = -9999;
+        pointer.y = -9999;
+      });
+
+      canvas.addEventListener("pointerdown", (e) => {
+        pointer.down = true;
+        playClick(420);
+        const rect = canvas.getBoundingClientRect();
+        const cx = e.clientX - rect.left;
+        const cy = e.clientY - rect.top;
+
+        if (simMode === "orbit") {
+          attractors.push({ x: cx, y: cy, mass: 1500 });
+          if (attractors.length > 4) attractors.shift();
+        } else {
+          nodes.forEach((n) => {
+            const dx = n.x - cx;
+            const dy = n.y - cy;
+            const dist = Math.hypot(dx, dy) || 1;
+            if (dist < 140) {
+              const force = ((140 - dist) / 140) * 14;
+              n.vx += (dx / dist) * force;
+              n.vy += (dy / dist) * force;
+            }
+          });
+        }
+      });
+
+      window.addEventListener("pointerup", () => {
+        pointer.down = false;
+      });
+
+      document.querySelectorAll(".mode-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".mode-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          simMode = btn.dataset.mode;
+          if (simMode === "lattice") {
+            labHint.textContent = "Click or drag to ripple elastic spring mesh";
+          } else if (simMode === "dipoles") {
+            labHint.textContent = "Move cursor to align magnetic dipole field";
+          } else {
+            labHint.textContent = "Click anywhere to place gravitational wells";
+          }
+        });
+      });
+
+      function stepSim() {
+        const colors = getThemeColors();
+        ctx.clearRect(0, 0, width, height);
+        let totalEnergy = 0;
+
+        if (simMode === "lattice") {
+          ctx.strokeStyle = colors.line;
+          ctx.lineWidth = 1;
+
+          for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            const dx = n.x - pointer.x;
+            const dy = n.y - pointer.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 90 && dist > 0) {
+              const push = ((90 - dist) / 90) * 1.8;
+              n.vx += (dx / dist) * push + pointer.vx * 0.05;
+              n.vy += (dy / dist) * push + pointer.vy * 0.05;
+            }
+
+            // Hooke's law spring force back to origin
+            n.vx += (n.ox - n.x) * 0.085;
+            n.vy += (n.oy - n.y) * 0.085;
+            n.vx *= 0.88;
+            n.vy *= 0.88;
+            n.x += n.vx;
+            n.y += n.vy;
+
+            const speed = Math.hypot(n.vx, n.vy);
+            totalEnergy += speed;
+
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, speed > 0.6 ? 3 : 2, 0, Math.PI * 2);
+            ctx.fillStyle = speed > 0.8 ? colors.accent : colors.ink;
+            ctx.fill();
+          }
+        } else if (simMode === "dipoles") {
+          for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            const angle = Math.atan2(pointer.y - n.oy, pointer.x - n.ox);
+            const dist = Math.hypot(pointer.x - n.ox, pointer.y - n.oy);
+            const near = dist < 160;
+            if (near) totalEnergy += (160 - dist) * 0.05;
+
+            ctx.save();
+            ctx.translate(n.ox, n.oy);
+            ctx.rotate(pointer.x < -1000 ? 0.4 : angle);
+            ctx.strokeStyle = near ? colors.accent : colors.muted;
+            ctx.lineWidth = near ? 2 : 1.25;
+            ctx.beginPath();
+            ctx.moveTo(-9, 0);
+            ctx.lineTo(9, 0);
+            ctx.stroke();
+
+            ctx.fillStyle = near ? colors.accent : colors.ink;
+            ctx.beginPath();
+            ctx.arc(9, 0, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        } else if (simMode === "orbit") {
+          attractors.forEach((a) => {
+            ctx.beginPath();
+            ctx.arc(a.x, a.y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = colors.accent;
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(a.x, a.y, 16, 0, Math.PI * 2);
+            ctx.strokeStyle = colors.accent;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          });
+
+          particles.forEach((p) => {
+            attractors.forEach((a) => {
+              const dx = a.x - p.x;
+              const dy = a.y - p.y;
+              const distSq = Math.max(180, dx * dx + dy * dy);
+              const f = a.mass / distSq;
+              const dist = Math.sqrt(distSq);
+              p.vx += (dx / dist) * f * 0.08;
+              p.vy += (dy / dist) * f * 0.08;
+            });
+
+            p.x += p.vx;
+            p.y += p.vy;
+            totalEnergy += Math.hypot(p.vx, p.vy) * 0.4;
+
+            if (p.x < 0 || p.x > width) p.vx *= -0.9;
+            if (p.y < 0 || p.y > height) p.vy *= -0.9;
+
+            p.history.push({ x: p.x, y: p.y });
+            if (p.history.length > 14) p.history.shift();
+
+            ctx.beginPath();
+            p.history.forEach((pt, idx) => {
+              if (idx === 0) ctx.moveTo(pt.x, pt.y);
+              else ctx.lineTo(pt.x, pt.y);
+            });
+            ctx.strokeStyle = colors.muted;
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
+            ctx.fillStyle = colors.ink;
+            ctx.fill();
+          });
+        }
+
+        const pct = Math.min(100, Math.max(8, totalEnergy * 1.4));
+        energyBar.style.width = pct + "%";
+        pointer.vx *= 0.5;
+        pointer.vy *= 0.5;
+        requestAnimationFrame(stepSim);
+      }
+      requestAnimationFrame(stepSim);
+
+      // 6. Project 1 Mini-Preview: Interactive Force Graph (Orbit Notes)
+      const orbitCanvas = document.getElementById("orbit-preview");
+      const oCtx = orbitCanvas.getContext("2d");
+      const graphNodes = [
+        { x: 90, y: 70, vx: 0, vy: 0, r: 6, label: "core" },
+        { x: 170, y: 55, vx: 0, vy: 0, r: 5, label: "math" },
+        { x: 150, y: 125, vx: 0, vy: 0, r: 7, label: "index" },
+        { x: 240, y: 105, vx: 0, vy: 0, r: 5, label: "ui" },
+        { x: 75, y: 145, vx: 0, vy: 0, r: 5, label: "sync" },
+      ];
+      const edges = [
+        [0, 1],
+        [0, 2],
+        [1, 2],
+        [2, 3],
+        [0, 4],
+        [2, 4],
+      ];
+      let draggedNode = null;
+
+      function resizeMiniCanvases() {
+        [orbitCanvas, document.getElementById("signal-preview")].forEach((c) => {
+          const r = c.parentElement.getBoundingClientRect();
+          c.width = r.width * dpr;
+          c.height = r.height * dpr;
+          c.getContext("2d").setTransform(dpr, 0, 0, dpr, 0, 0);
+        });
+      }
+      window.addEventListener("resize", resizeMiniCanvases);
+      resizeMiniCanvases();
+
+      orbitCanvas.addEventListener("pointerdown", (e) => {
+        const r = orbitCanvas.getBoundingClientRect();
+        const mx = e.clientX - r.left;
+        const my = e.clientY - r.top;
+        draggedNode = graphNodes.find(
+          (n) => Math.hypot(n.x - mx, n.y - my) < 24
+        );
+      });
+      orbitCanvas.addEventListener("pointermove", (e) => {
+        if (!draggedNode) return;
+        const r = orbitCanvas.getBoundingClientRect();
+        draggedNode.x = e.clientX - r.left;
+        draggedNode.y = e.clientY - r.top;
+      });
+      window.addEventListener("pointerup", () => {
+        draggedNode = null;
+      });
+
+      function stepOrbitPreview() {
+        const w = orbitCanvas.width / dpr;
+        const h = orbitCanvas.height / dpr;
+        const colors = getThemeColors();
+        oCtx.clearRect(0, 0, w, h);
+
+        edges.forEach(([a, b]) => {
+          const na = graphNodes[a];
+          const nb = graphNodes[b];
+          const dx = nb.x - na.x;
+          const dy = nb.y - na.y;
+          const dist = Math.hypot(dx, dy) || 1;
+          const force = (dist - 75) * 0.015;
+          if (na !== draggedNode) {
+            na.vx += (dx / dist) * force;
+            na.vy += (dy / dist) * force;
+          }
+          if (nb !== draggedNode) {
+            nb.vx -= (dx / dist) * force;
+            nb.vy -= (dy / dist) * force;
+          }
+
+          oCtx.beginPath();
+          oCtx.moveTo(na.x, na.y);
+          oCtx.lineTo(nb.x, nb.y);
+          oCtx.strokeStyle = colors.line;
+          oCtx.lineWidth = 1.5;
+          oCtx.stroke();
+        });
+
+        graphNodes.forEach((n) => {
+          if (n !== draggedNode) {
+            n.vx += (w / 2 - n.x) * 0.002;
+            n.vy += (h / 2 - n.y) * 0.002;
+            n.vx *= 0.85;
+            n.vy *= 0.85;
+            n.x += n.vx;
+            n.y += n.vy;
+          }
+          oCtx.beginPath();
+          oCtx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          oCtx.fillStyle = n === draggedNode ? colors.accent : colors.ink;
+          oCtx.fill();
+        });
+
+        requestAnimationFrame(stepOrbitPreview);
+      }
+      requestAnimationFrame(stepOrbitPreview);
+
+      // 7. Project 2 Mini-Preview: Generative Contour Waves (Signal Garden)
+      const sigCanvas = document.getElementById("signal-preview");
+      const sCtx = sigCanvas.getContext("2d");
+      let sigPhase = 0;
+      let sigMouseY = 0.5;
+      sigCanvas.addEventListener("pointermove", (e) => {
+        const r = sigCanvas.getBoundingClientRect();
+        sigMouseY = (e.clientY - r.top) / r.height;
+      });
+
+      function stepSignalPreview() {
+        const w = sigCanvas.width / dpr;
+        const h = sigCanvas.height / dpr;
+        const colors = getThemeColors();
+        sCtx.clearRect(0, 0, w, h);
+        sigPhase += 0.025;
+
+        for (let line = 0; line < 6; line++) {
+          sCtx.beginPath();
+          for (let x = 0; x <= w; x += 8) {
+            const y =
+              h * 0.3 +
+              line * 18 +
+              Math.sin(x * 0.025 + sigPhase + line * 0.6) *
+                (12 + sigMouseY * 18);
+            if (x === 0) sCtx.moveTo(x, y);
+            else sCtx.lineTo(x, y);
+          }
+          sCtx.strokeStyle = line === 2 ? colors.accent : colors.muted;
+          sCtx.lineWidth = line === 2 ? 2 : 1.1;
+          sCtx.stroke();
+        }
+        requestAnimationFrame(stepSignalPreview);
+      }
+      requestAnimationFrame(stepSignalPreview);
+
+      // 8. Project 3 Interactive UI Primitives (Good Defaults)
+      document.querySelectorAll(".tactile-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const checked = btn.getAttribute("aria-checked") === "true";
+          btn.setAttribute("aria-checked", String(!checked));
+        });
+      });
+      const demoSlider = document.getElementById("demo-slider");
+      const demoSliderVal = document.getElementById("demo-slider-val");
+      demoSlider.addEventListener("input", () => {
+        demoSliderVal.textContent = demoSlider.value + "%";
+      });
+
+      // 9. Harmonic Lissajous Oscillator Canvas
+      const lisCanvas = document.getElementById("lissajous-canvas");
+      const lCtx = lisCanvas.getContext("2d");
+      const freqXInput = document.getElementById("freq-x");
+      const freqYInput = document.getElementById("freq-y");
+      const speedInput = document.getElementById("phase-speed");
+      let delta = 0;
+
+      function resizeLissajous() {
+        const r = lisCanvas.parentElement.getBoundingClientRect();
+        lisCanvas.width = r.width * dpr;
+        lisCanvas.height = r.height * dpr;
+        lCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      window.addEventListener("resize", resizeLissajous);
+      resizeLissajous();
+
+      [freqXInput, freqYInput, speedInput].forEach((input) => {
+        input.addEventListener("input", () => {
+          document.getElementById("freq-x-val").textContent =
+            freqXInput.value + " Hz";
+          document.getElementById("freq-y-val").textContent =
+            freqYInput.value + " Hz";
+          document.getElementById("phase-speed-val").textContent =
+            (Number(speedInput.value) / 100).toFixed(2) + " rad/s";
+          playClick(400 + Number(freqXInput.value) * 35);
+        });
+      });
+
+      function stepLissajous() {
+        const w = lisCanvas.width / dpr;
+        const h = lisCanvas.height / dpr;
+        const colors = getThemeColors();
+        lCtx.clearRect(0, 0, w, h);
+
+        const fx = Number(freqXInput.value);
+        const fy = Number(freqYInput.value);
+        const speed = Number(speedInput.value) * 0.0005;
+        delta += speed;
+
+        const rx = Math.min(w, h) * 0.36;
+        const ry = Math.min(w, h) * 0.36;
+        const cx = w / 2;
+        const cy = h / 2;
+
+        lCtx.beginPath();
+        const steps = 450;
+        for (let i = 0; i <= steps; i++) {
+          const t = (i / steps) * Math.PI * 2;
+          const x = cx + Math.sin(fx * t + delta) * rx;
+          const y = cy + Math.sin(fy * t) * ry;
+          if (i === 0) lCtx.moveTo(x, y);
+          else lCtx.lineTo(x, y);
+        }
+        lCtx.strokeStyle = colors.accent;
+        lCtx.lineWidth = 2;
+        lCtx.stroke();
+
+        requestAnimationFrame(stepLissajous);
+      }
+      requestAnimationFrame(stepLissajous);
+
+      // 10. Command Palette (Cmd+K / Ctrl+K)
+      const cmdBackdrop = document.getElementById("cmd-backdrop");
+      const cmdInput = document.getElementById("cmd-input");
+      const cmdTrigger = document.getElementById("cmd-trigger");
+      const cmdItems = Array.from(document.querySelectorAll(".cmd-item"));
+
+      function toggleCmd(open) {
+        const isOpen =
+          open !== undefined ? open : !cmdBackdrop.classList.contains("open");
+        cmdBackdrop.classList.toggle("open", isOpen);
+        if (isOpen) {
+          cmdInput.value = "";
+          filterCmd("");
+          setTimeout(() => cmdInput.focus(), 20);
+        }
+      }
+
+      cmdTrigger.addEventListener("click", () => toggleCmd(true));
+      cmdBackdrop.addEventListener("click", (e) => {
+        if (e.target === cmdBackdrop) toggleCmd(false);
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          toggleCmd();
+        } else if (e.key === "Escape") {
+          toggleCmd(false);
+        }
+      });
+
+      function filterCmd(query) {
+        const q = query.toLowerCase();
+        cmdItems.forEach((item) => {
+          const match = item.textContent.toLowerCase().includes(q);
+          item.style.display = match ? "flex" : "none";
+        });
+      }
+
+      cmdInput.addEventListener("input", (e) => filterCmd(e.target.value));
+
+      cmdItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const act = item.dataset.action;
+          if (act === "copy-email") copyEmail();
+          if (act === "theme-paper") applyTheme("paper");
+          if (act === "theme-carbon") applyTheme("carbon");
+          if (act === "theme-blueprint") applyTheme("blueprint");
+          if (act === "toggle-sfx") sfxToggle.click();
+          if (act === "goto-work") location.hash = "#work";
+          if (act === "goto-github") {
+            window.open("https://github.com/Jackson-Ryan", "_blank");
+          }
+          toggleCmd(false);
+        });
+      });
+    </script>
+  </body>
 </html>
